@@ -1,0 +1,120 @@
+{{#section 'css'}}
+<style>
+    h2.page-title {
+        margin-bottom: 20px;
+        padding: 10px 0px 10px 15px;
+        background-color: silver;
+        font-size: 2rem;
+    }
+
+    .center-item {
+        text-align: center;
+    }
+
+    th:hover {
+        cursor: pointer;
+        color: #fd0e35;
+    }
+
+    .btn-info {
+        background-color: #24a0ed;
+        color: white;
+    }
+
+    .btn-success {
+        background-color: #4dac4f;
+        color: white;
+    }
+
+    .btn-warning {
+        background-color: #fd0e35;
+        color: white;
+    }
+</style>
+{{/section}}
+
+{{#if showMsg}}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Success!</strong> {{Msg}}
+</div>
+{{/if}}
+<div class="container sp">
+
+    <h2 class="page-title">Quản lý tài khoản</h2>
+
+    <div style="float: right">
+        <a class="btn btn-info" href="/manager/dashboard" role="button">
+            Quay lại
+        </a>&nbsp;
+        <a class="btn btn-success" href="add" role="button">
+            Thêm mới
+        </a>
+    </div>
+
+    <table class="table" id="tableDH" style="width: 80%;">
+        <thead>
+            <tr>
+                <th class="center-item">Tên đăng nhập</th>
+                <th>Họ và tên</th>
+                <th class="center-item">Loại người dùng</th>
+                <th class="center-item">Xoá tài khoản</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each user}}
+            <tr>
+                <td class="center-item">{{userName}} </td>
+                <td>{{hoTen}} </td>
+                <td class="center-item">{{loaiNguoiDung}}</td>
+                <td class="center-item">
+                    <a class="btn btn-warning" href="/manager/acount/delete?id={{userName}}" role="button">
+                        Xóa
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+</div>
+{{#section 'js'}}
+<script src="/phantrang/jquery.min.js"></script>
+<script src="/phantrang/bootstrap.min.js"></script>
+<script src="/phantrang/jquery.dataTables.min.js"></script>
+<script src="/phantrang/dataTables.bootstrap.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
+
+<script>
+    $(function () {
+        $('#tableDH').DataTable({
+            'paging': true,
+            'pagingType': 'full',
+            'lengthMenu': [[5, 10, 20], [5, 10, 20]],
+            'lengthChange': true,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true,
+            'language': {
+                "lengthMenu": "Hiển thị _MENU_ dòng",
+                "info": "Đang hiển thị _START_ tới _END_ tổng số _TOTAL_ kết quả",
+                "paginate": {
+                    "first": "<<",
+                    "last": ">>",
+                    "next": ">",
+                    "previous": "<"
+                }
+            }
+        });
+    });
+    $(function () {
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+    });
+    //Initialize Select2 Elements
+    $('.select2').select2();
+</script> {{/section}}

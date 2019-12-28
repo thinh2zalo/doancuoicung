@@ -1,0 +1,149 @@
+{{#section 'css'}}
+<style>
+    .center-item {
+        text-align: center;
+    }
+
+    th:hover {
+        cursor: pointer;
+        color: #fd0e35;
+    }
+
+    .btn-info {
+        background-color: #24a0ed;
+        color: white;
+    }
+
+    .btn-success {
+        background-color: #4dac4f;
+        color: white;
+    }
+
+    .btn-warning {
+        background-color: #fd0e35;
+        color: white;
+    }
+</style>
+{{/section}}
+{{#if showMsg}}
+<div class="alert alert-success">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong>Success!</strong> {{Msg}}
+</div>
+{{/if}}
+<div class="container sp">
+
+    <div style="float: right">
+        <a class="btn btn-success" href="dashboard" role="button">
+            Quay lại
+        </a>&nbsp;
+        <a class="btn btn-info" href="nxb/add" role="button"
+            style="">
+            Thêm mới
+        </a>
+    </div>
+
+    {{!-- <div class="panel-body">
+        <span> </span>
+        <div class="table-responsive" style="display:flex;align-self:center">
+            <table class="table" id="tableDH" style="width:110%">
+                <col width="20%">
+                <col width="50%">
+                <col width="10%"> --}}
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table id="tableDH" class="table">
+                    <col width="10%" margin-left="50px;">
+                    <col width="50%">
+                    <col width="15%">
+                <thead>
+                    <tr>
+                        <th style="margin-left:40%" class="center-item">
+                            <a>Mã số</a>
+                        </th>
+                        <th style="width:900px;">
+                            <a>Tên nhà xuất bản</a>
+                        </th>
+                        <th style="color:#1a9cb7;" class="center-item">Thao tác</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each nxb}}
+                    <tr>
+                        <td class="center-item">{{idNhaSX}} </td>
+                        <form action="" method="POST">
+                            <td>
+                                <input type="text" placeholder="Nhập tên loại" data-meta="Field" name="tenNhaSX"
+                                    value="{{tenNhaSX}}" style="border: none;">
+                                <input type="text" class="hidden center-item" value="{{idNhaSX}}" name="idNhaSX">
+                            </td>
+
+                            <td class="center-item">
+                                <button class="center-item" type="submit" style="background-color:transparent">
+
+                                    <img class="center-item" src="https://img.icons8.com/color/48/000000/save.png"
+                                        style="width:30px;height:30px;">
+                                </button>
+
+                            </td>
+                        </form>
+                    </tr>
+                    {{/each}}
+
+                </tbody>
+            </table>
+            {{!-- <a href="dashboard">
+                <button class="btn btn-success" type="button" style="background-color: #1a9cb7;">Quay lại</button>
+            </a>
+            <a href="nxb/add">
+                <button class="btn btn-success" type="button">
+                    Thêm mới</button>
+            </a> --}}
+             
+        </div>
+    </div>
+
+
+
+</div>
+{{#section 'js'}}
+<script src="/phantrang/jquery.min.js"></script>
+<script src="/phantrang/bootstrap.min.js"></script>
+<script src="/phantrang/jquery.dataTables.min.js"></script>
+<script src="/phantrang/dataTables.bootstrap.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
+
+<script>
+    $(function () {
+        $('#tableDH').DataTable({
+            'paging': true,
+            'pagingType': 'full',
+            'lengthMenu': [[10, 25, 50], [10, 25, 50]],
+            'lengthChange': true,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true,
+            'language': {
+                "lengthMenu": "Hiển thị _MENU_ dòng",
+                "info": "Đang hiển thị _START_ tới _END_ tổng số _TOTAL_ kết quả",
+                "paginate": {
+                    "first": "<<",
+                    "last": ">>",
+                    "next": ">",
+                    "previous": "<"
+                }
+            }
+        });
+    });
+    $(function () {
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        });
+    });
+    //Initialize Select2 Elements
+    $('.select2').select2();
+</script> {{/section}}
