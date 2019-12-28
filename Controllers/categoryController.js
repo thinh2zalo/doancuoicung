@@ -4,7 +4,7 @@
 var express = require('express');
 var categoryRepo = require('../repos/categoryRepo');
 var helpers = require('handlebars-helpers')();
-var products= require('../repos/ProductRePo');
+var products= require('../repos/ProductRepo');
 
 var router = express.Router();
 

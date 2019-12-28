@@ -3,7 +3,7 @@
  */
 var express = require('express');
 var cartRepo = require('../repos/cartRepo'),
-    productRepo = require('../repos/ProductRepo'),
+    ProductRepo = require('../repos/ProductRepo'),
     payRepo = require('../repos/payRepo'),
     accountRepo = require('../repos/accountRepo');
     dateFormat = require('handlebars-dateformat');
@@ -52,7 +52,7 @@ router.post('/sl', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-    productRepo.loadDetail(req.body.idSach).then(rows => {
+    ProductRepo.loadDetail(req.body.idSach).then(rows => {
         var item = {
             idSach: req.body.idSach,
             ten_sach: rows[0].ten_sach,
